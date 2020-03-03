@@ -17,6 +17,7 @@ namespace PlatformerExample
         SpriteBatch spriteBatch;
         SpriteSheet sheet;
         Tileset tileset;
+        Tilemap tilemap;
         Player player;
         List<Platform> platforms;
         AxisList world;
@@ -56,6 +57,9 @@ namespace PlatformerExample
             // TODO: use this.Content to load your game content here
             var t = Content.Load<Texture2D>("spritesheet");
             sheet = new SpriteSheet(t, 21, 21, 3, 2);
+
+            // Load the tilemap
+            tilemap = Content.Load<Tilemap>("level1");
 
             // Create the player with the corresponding frames from the spritesheet
             var playerFrames = from index in Enumerable.Range(19, 30) select sheet[index];
@@ -117,6 +121,9 @@ namespace PlatformerExample
             var offset = new Vector2(200, 300) - player.Position;
             var t = Matrix.CreateTranslation(offset.X, offset.Y, 0);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, t);
+
+            // Draw the tilemap
+            tilemap.Draw(spriteBatch);
 
             // Draw the platforms 
             var platformQuery = world.QueryRange(player.Position.X - 221, player.Position.X + 400);

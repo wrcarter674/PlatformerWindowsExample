@@ -26,6 +26,11 @@
 /processorParam:TextureFormat=Color
 /build:../../../PlatformerExample/PlatformerExample/Content/spritesheet.png;spritesheet.png
 
+#begin level1.tmx
+/importer:TilemapImporter
+/processor:TilemapProcessor
+/build:level1.tmx
+
 #begin pixel.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -52,6 +57,6 @@
 
 #begin tiledspritesheet.tsx
 /importer:TilesetImporter
-/processor:
+/processor:TilesetProcessor
 /build:tiledspritesheet.tsx
 
