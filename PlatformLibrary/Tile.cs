@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace PlatformLibrary
 {
@@ -8,32 +9,43 @@ namespace PlatformLibrary
     /// </summary>
     public struct Tile
     {
+        #region Properties
         // The tile's source rectangle
-        private Rectangle source;
+        public Rectangle Source { get; set; }
 
         // The tile's texture
-        private Texture2D texture;
+        public Texture2D Texture { get; set; }
+
+        //The Tiles Collision box
+        public Rectangle Collision { get; set; }
+
+        //The Tile's properties dictionary
+        public Dictionary<string, string> Properties { get; set; }
 
         /// <summary>
         /// Gets the tile's width
         /// </summary>
-        public int Width => source.Width;
+        public int Width => Source.Width;
 
         /// <summary>
         /// Gets teh tile's height
         /// </summary>
-        public int Height => source.Height;
-
+        public int Height => Source.Height;
+        #endregion
+        #region Initialization
         /// <summary>
         /// Constructs a new tile
         /// </summary>
         /// <param name="source"></param>
         /// <param name="texture"></param>
-        public Tile(Rectangle source, Texture2D texture)
+        public Tile(Rectangle source, Texture2D texture, Rectangle collision, Dictionary<string, string> properties)
         {
-            this.texture = texture;
-            this.source = source;
+            Texture = texture;
+            Source = source;
+            Collision = collision;
+            Properties = properties;
         }
+        #endregion
 
         /// <summary>
         /// Draws the tile using the provided SpriteBatch 
@@ -49,7 +61,7 @@ namespace PlatformLibrary
         /// <param name="layerDepth">The sorting layer of the tile</param>
         public void Draw(SpriteBatch SpriteBatch, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
         {
-            SpriteBatch.Draw(texture, destinationRectangle, source, color, rotation, origin, effects, layerDepth);
+            SpriteBatch.Draw(Texture, destinationRectangle, Source, color, rotation, origin, effects, layerDepth);
         }
 
         /// <summary>
@@ -62,7 +74,7 @@ namespace PlatformLibrary
         /// <param name="color">The color</param>
         public void Draw(SpriteBatch SpriteBatch, Rectangle destinationRectangle, Color color)
         {
-            SpriteBatch.Draw(texture, destinationRectangle, source, color);
+            SpriteBatch.Draw(Texture, destinationRectangle, Source, color);
         }
 
         /// <summary>
@@ -75,7 +87,7 @@ namespace PlatformLibrary
         /// <param name="color">The color</param>
         public void Draw(SpriteBatch SpriteBatch, Vector2 position, Color color)
         {
-            SpriteBatch.Draw(texture, position, source, color);
+            SpriteBatch.Draw(Texture, position, Source, color);
         }
 
         /// <summary>
@@ -93,7 +105,7 @@ namespace PlatformLibrary
         /// <param name="layerDepth">The sorting layer of the tile</param>
         public void Draw(SpriteBatch SpriteBatch, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
         {
-            SpriteBatch.Draw(texture, position, source, color, rotation, origin, scale, effects, layerDepth);
+            SpriteBatch.Draw(Texture, position, Source, color, rotation, origin, scale, effects, layerDepth);
         }
     }
 }

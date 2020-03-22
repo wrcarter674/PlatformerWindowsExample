@@ -51,6 +51,16 @@ namespace PlatformerContentExtension
                 var tile = value.Tiles[i];
                 output.Write(tile.Source.X);
                 output.Write(tile.Source.Y);
+                output.Write(tile.Collision.X);
+                output.Write(tile.Collision.Y);
+                output.Write(tile.Collision.Width);
+                output.Write(tile.Collision.Height);
+                output.Write(tile.Properties.Count);
+                foreach (KeyValuePair<string, string> property in tile.Properties)
+                {
+                    output.Write(property.Key);
+                    output.Write(property.Value);
+                }
             }
 
         }

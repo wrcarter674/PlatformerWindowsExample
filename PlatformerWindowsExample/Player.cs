@@ -192,7 +192,7 @@ namespace PlatformerExample
 
         public void CheckForPlatformCollision(IEnumerable<IBoundable> platforms)
         {
-            Debug.WriteLine($"Checking collisions against {platforms.Count()} platforms");
+          
             if (verticalState != VerticalMovementState.Jumping)
             {
                 verticalState = VerticalMovementState.Falling;

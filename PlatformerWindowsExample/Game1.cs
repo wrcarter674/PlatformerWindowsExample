@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Diagnostics;
 using PlatformLibrary;
 
@@ -105,7 +106,13 @@ namespace PlatformerExample
             // Check for platform collisions
             var platformQuery = world.QueryRange(player.Bounds.X, player.Bounds.X + player.Bounds.Width);
             player.CheckForPlatformCollision(platformQuery);
-
+            foreach(Tile tile in tilemap.Tiles)
+            {
+                if(tile.Collision != Rectangle.Empty)
+                {
+                    Debug.WriteLine("We found one boys");
+                }
+            }
             base.Update(gameTime);
         }
 
@@ -131,7 +138,7 @@ namespace PlatformerExample
             {
                 platform.Draw(spriteBatch);
             }
-            Debug.WriteLine($"{platformQuery.Count()} Platforms rendered");
+            //Debug.WriteLine($"{platformQuery.Count()} Platforms rendered");
 
             // Draw the player
             player.Draw(spriteBatch);

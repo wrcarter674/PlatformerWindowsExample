@@ -17,14 +17,17 @@ namespace PlatformerContentExtension
         /// The Tile's source rectangle
         /// </summary>
         public Rectangle Source { get; set; }
-
+        public Rectangle Collision { get; set; } = Rectangle.Empty;
         /// <summary>
         /// Creates a new TileContent with the specified source rectangle
         /// </summary>
         /// <param name="source">The source rectangle of the tile in its spritesheet</param>
-        public TileContent(Rectangle source)
+        public Dictionary<string, string> Properties { get; set; }
+        public TileContent()
         {
-            Source = source;
+            Properties = new Dictionary<string, string>();
         }
+
+        //  public Rectangle Collision = Rectangle.Empty; 
     }
 }

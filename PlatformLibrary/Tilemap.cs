@@ -11,22 +11,22 @@ namespace PlatformLibrary
         #region private fields
 
         // An array of all tiles in the tilemap
-        Tile[] tiles;
+        public Tile[] Tiles;
 
         // An array of all tile layers in the tilemap
-        TilemapLayer[] layers;
+        public TilemapLayer[] Layers;
 
         // The width of the map, measured in tiles
-        uint mapWidth;
+        public uint MapWidth;
 
         // The height of the map, measured in tiles
-        uint mapHeight;
+        public uint MapHeight;
 
         // The width of the tiles in the map
-        uint tileWidth;
+        public uint TileWidth;
 
         // The height of the tiles in the map
-        uint tileHeight;
+        public uint TileHeight;
 
         #endregion
 
@@ -43,12 +43,12 @@ namespace PlatformLibrary
         /// <param name="tiles">The tiles of the map</param>
         public Tilemap(uint mapWidth, uint mapHeight, uint tileWidth, uint tileHeight, TilemapLayer[] layers, Tile[] tiles)
         {
-            this.mapWidth = mapWidth;
-            this.mapHeight = mapHeight;
-            this.tileWidth = tileWidth;
-            this.tileHeight = tileHeight;
-            this.layers = layers;
-            this.tiles = tiles;
+            this.MapWidth = mapWidth;
+            this.MapHeight = mapHeight;
+            this.TileWidth = tileWidth;
+            this.TileHeight = tileHeight;
+            this.Layers = layers;
+            this.Tiles = tiles;
         }
 
         #endregion
@@ -63,17 +63,17 @@ namespace PlatformLibrary
         public void DrawLayer(SpriteBatch spriteBatch, int layerIndex)
         {
 
-            var layer = layers[layerIndex];
-            for (uint y = 0; y < mapHeight; y++)
+            var layer = Layers[layerIndex];
+            for (uint y = 0; y < MapHeight; y++)
             {
-                for (uint x = 0; x < mapWidth; x++)
+                for (uint x = 0; x < MapWidth; x++)
                 {
-                    uint dataIndex = y * mapWidth + x;
+                    uint dataIndex = y * MapWidth + x;
                     uint tileIndex = layer.Data[dataIndex];
-                    if (tileIndex != 0 && tileIndex < tiles.Length)
+                    if (tileIndex != 0 && tileIndex < Tiles.Length)
                     {
-                        Vector2 position = new Vector2(x * tileWidth, y * tileHeight);
-                        tiles[tileIndex].Draw(spriteBatch, position, Color.White);
+                        Vector2 position = new Vector2(x * TileWidth, y * TileHeight);
+                        Tiles[tileIndex].Draw(spriteBatch, position, Color.White);
                     }
                 }
             }
@@ -85,19 +85,19 @@ namespace PlatformLibrary
         /// <param name="spriteBatch">The SpriteBatch to draw with</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (var layer in layers)
+            foreach (var layer in Layers)
             {
-                for (uint y = 0; y < mapHeight; y++)
+                for (uint y = 0; y < MapHeight; y++)
                 {
-                    for (uint x = 0; x < mapWidth; x++)
+                    for (uint x = 0; x < MapWidth; x++)
                     {
-                        uint dataIndex = y * mapWidth + x;
+                        uint dataIndex = y * MapWidth + x;
                         uint tileIndex = layer.Data[dataIndex];
-                        if (tileIndex != 0 && tileIndex < tiles.Length)
+                        if (tileIndex != 0 && tileIndex < Tiles.Length)
                         {
-                            Tile tile = tiles[tileIndex];
-                            Vector2 position = new Vector2(x * tileWidth, y * tileHeight);
-                            tiles[tileIndex].Draw(spriteBatch, position, Color.White);
+                            Tile tile = Tiles[tileIndex];
+                            Vector2 position = new Vector2(x * TileWidth, y * TileHeight);
+                            Tiles[tileIndex].Draw(spriteBatch, position, Color.White);
                         }
                     }
                 }
@@ -105,5 +105,6 @@ namespace PlatformLibrary
         }
 
         #endregion
+
     }
 }

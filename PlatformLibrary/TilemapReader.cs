@@ -33,8 +33,7 @@ namespace PlatformLibrary
             // Read the layer data
             for (var i = 0; i < layerCount; i++)
             {
-                //var layerId = input.ReadUInt32();
-                //var layerName = input.ReadString();
+           
                 var tileCount = input.ReadUInt32();
                 var layerData = new uint[tileCount];
                 for (uint j = 0; j < tileCount; j++)
@@ -42,8 +41,7 @@ namespace PlatformLibrary
                     layerData[j] = input.ReadUInt32();
                 }
                 layers[i] = new TilemapLayer(layerData);
-                //layersById[layerId] = layers[i];
-                //layersByName[layerName] = layers[i];
+               
             }
 
             // Read the tileset data

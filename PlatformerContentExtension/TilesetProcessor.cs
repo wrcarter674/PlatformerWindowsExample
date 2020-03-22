@@ -47,13 +47,19 @@ namespace PlatformerContentExtension
             // Run the logic to generate the individual tile source rectangles
             for (int i = 0; i < input.TileCount; i++)
             {
+                if (input.Tiles[i] == null)
+                {
+                    input.Tiles[i] = new TileContent();
+                }
                 var source = new Rectangle(
                         (i % input.Columns) * (input.TileWidth + input.Spacing) + input.Margin, // x coordinate 
                         (i / input.Columns) * (input.TileHeight + input.Spacing) + input.Margin, // y coordinate
                         input.TileWidth,
                         input.TileHeight
                         );
-                input.Tiles[i] = new TileContent(source);
+                input.Tiles[i] = new TileContent();
+                input.Tiles[i].Source = source;
+               // input.Tiles[i].Collision = new Rectangle()
             }
 
             // The tileset has been processed

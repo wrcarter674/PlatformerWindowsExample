@@ -60,6 +60,7 @@ namespace PlatformerContentExtension
 
             // A tilemap will have one or more layers
             XmlNodeList layers = map.SelectNodes("//layer");
+            int LayerCount = 0;
             foreach (XmlNode layer in layers)
             {
                 var id = uint.Parse(layer.Attributes["id"].Value);
@@ -80,6 +81,7 @@ namespace PlatformerContentExtension
                     Height = height,
                     DataString = dataString
                 });
+                LayerCount++;
             }
 
             return output;
